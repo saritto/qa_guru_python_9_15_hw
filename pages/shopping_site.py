@@ -14,6 +14,28 @@ class ShoppingSite:
         browser.element('#password').type(password)
         browser.element('#login-button').click()
 
+    def auth_error(self):
+        username = os.getenv('USERNAME')
+        password = os.getenv('PASSWORD')
+        browser.element('#user-name').type(username)
+        browser.element('#password').type(password)
+        browser.element('#login-button').click()
+
+    def locked_user(self):
+        username = os.getenv('LOCKED_USER')
+        password = os.getenv('PASSW')
+        browser.element('#user-name').type(username)
+        browser.element('#password').type(password)
+        browser.element('#login-button').click()
+
+    def error_auth(self):
+        browser.element('.error-message-container').should(have.exact_text(
+            'Epic sadface: Username and password do not match any user in this service'))
+
+    def error_locked_user(self):
+        browser.element('.error-message-container').should(have.exact_text(
+            'Epic sadface: Sorry, this user has been locked out.'))
+
     def add_items_to_cart(self):
         browser.element('#add-to-cart-sauce-labs-backpack').click()
         browser.element('#add-to-cart-sauce-labs-bolt-t-shirt').click()
@@ -40,3 +62,6 @@ class ShoppingSite:
     def finish(self):
         browser.element('#finish').click()
         browser.element('.complete-header').should(have.exact_text('Thank you for your order!'))
+
+
+shopping_site = ShoppingSite()
