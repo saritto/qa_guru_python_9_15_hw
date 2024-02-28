@@ -20,10 +20,10 @@
 - Telegram Bot
 
 ## Запуск автотестов выполняется на сервере Jenkins
-> <a target="_blank" href="https://jenkins.autotests.cloud/job/qa_guru_python_9_15_hw/">Ссылка на проект в Jenkins</a>
+> <a target="_blank" href="https://jenkins.autotests.cloud/job/hw_15_swag_labs/">Ссылка на проект в Jenkins</a>
 
 ### Для запуска автотестов в Jenkins
-#### 1. Открыть <a target="_blank" href="https://jenkins.autotests.cloud/job/qa_guru_python_9_15_hw/">проект</a>
+#### 1. Открыть <a target="_blank" href="https://jenkins.autotests.cloud/job/hw_15_swag_labs/">проект</a>
 
 ![This is an image](/photos/main_jen.png)
 
