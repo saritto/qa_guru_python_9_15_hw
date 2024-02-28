@@ -2,7 +2,7 @@ from selene import browser, have, command
 import os
 
 
-class ShoppingSite:
+class ShoppingPage:
 
     def open(self):
         browser.open('https://www.saucedemo.com/')
@@ -13,6 +13,10 @@ class ShoppingSite:
         browser.element('#user-name').type(username)
         browser.element('#password').type(password)
         browser.element('#login-button').click()
+
+    def check_login(self):
+        browser.element('#react-burger-menu-btn').click()
+        browser.element('#logout_sidebar_link').should(have.exact_text('Logout'))
 
     def auth_error(self):
         username = os.getenv('USERNAME')
@@ -63,5 +67,21 @@ class ShoppingSite:
         browser.element('#finish').click()
         browser.element('.complete-header').should(have.exact_text('Thank you for your order!'))
 
+    def logout(self):
+        browser.element('#logout_sidebar_link').click()
+        browser.element('.login_logo').should(have.exact_text('Swag Labs'))
+        browser.element('#user-name').should(have.attribute('placeholder', 'Username'))
+        browser.element('#password').should(have.attribute('placeholder', 'Password'))
 
-shopping_site = ShoppingSite()
+    def check_cart_add(self):
+        browser.element('#remove-sauce-labs-backpack').should(have.exact_text('Remove'))
+        browser.element('#remove-sauce-labs-bolt-t-shirt').should(have.exact_text('Remove'))
+        browser.element('.shopping_cart_badge').should(have.exact_text('2'))
+
+    def check_cart_remove(self):
+        browser.element('#remove-sauce-labs-backpack').click()
+        browser.element('.shopping_cart_badge').should(have.exact_text('1'))
+        assert browser.element('.removed_cart_item')
+
+
+shopping_page = ShoppingPage()
